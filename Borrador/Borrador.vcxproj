@@ -135,6 +135,12 @@
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CBala.h" />
+    <ClInclude Include="CBomba.h" />
+    <ClInclude Include="CBombas.h" />
+    <ClInclude Include="CMapa.h" />
+    <ClInclude Include="CObjeto.h" />
+    <ClInclude Include="CSoldado.h" />
     <ClInclude Include="juego.h" />
     <ClInclude Include="proyecto.h">
       <FileType>CppForm</FileType>
