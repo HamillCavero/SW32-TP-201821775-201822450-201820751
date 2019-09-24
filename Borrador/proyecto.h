@@ -6,12 +6,9 @@ namespace TrabajoFinal1 {
 	{
 	private: System::Windows::Forms::Timer^  timer1;
 	private: System::Windows::Forms::Timer^  timer2;
-	private: System::Windows::Forms::Button^  button2;
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Label^  lbl_creditos;
-	private: System::Windows::Forms::TextBox^  txt_instruc1;
-	private: System::Windows::Forms::TextBox^  txt_instruc2;
 	private: System::Windows::Forms::Label^  lbl_vidas;
 	private: System::Windows::Forms::Label^  lbl_tiempo;
 	private: System::Windows::Forms::TextBox^  txt_vidas;
@@ -33,8 +30,6 @@ namespace TrabajoFinal1 {
 			 Juego* Control;
 			 Bitmap^ otrasImagenes;
 			 float angle;
-	private: System::Windows::Forms::Label^  lblVidas;
-	private: System::Windows::Forms::Label^  lblTiempo;
 			 Bitmap^fondo;
 	public:
 		MyForm(void)
@@ -68,15 +63,11 @@ namespace TrabajoFinal1 {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
-			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->lbl_creditos = (gcnew System::Windows::Forms::Label());
-			this->txt_instruc1 = (gcnew System::Windows::Forms::TextBox());
-			this->txt_instruc2 = (gcnew System::Windows::Forms::TextBox());
 			this->lbl_vidas = (gcnew System::Windows::Forms::Label());
 			this->lbl_tiempo = (gcnew System::Windows::Forms::Label());
 			this->txt_vidas = (gcnew System::Windows::Forms::TextBox());
@@ -84,8 +75,6 @@ namespace TrabajoFinal1 {
 			this->lbl_enemigosRestantes = (gcnew System::Windows::Forms::Label());
 			this->lbl_enemigosNivel = (gcnew System::Windows::Forms::Label());
 			this->btn_menu = (gcnew System::Windows::Forms::Button());
-			this->lblVidas = (gcnew System::Windows::Forms::Label());
-			this->lblTiempo = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// timer1
@@ -96,16 +85,6 @@ namespace TrabajoFinal1 {
 			// 
 			this->timer2->Interval = 300;
 			this->timer2->Tick += gcnew System::EventHandler(this, &MyForm::Bombas);
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(483, 174);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(111, 32);
-			this->button2->TabIndex = 0;
-			this->button2->Text = L"Como Jugar";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// button3
 			// 
@@ -132,35 +111,10 @@ namespace TrabajoFinal1 {
 			this->lbl_creditos->AutoSize = true;
 			this->lbl_creditos->Location = System::Drawing::Point(643, 136);
 			this->lbl_creditos->Name = L"lbl_creditos";
-			this->lbl_creditos->Size = System::Drawing::Size(162, 39);
+			this->lbl_creditos->Size = System::Drawing::Size(129, 26);
 			this->lbl_creditos->TabIndex = 3;
-			this->lbl_creditos->Text = L"Este juego fue hecho por \r\nRomario y Hamill\r\npara el curso de programación 2!\r\n";
+			this->lbl_creditos->Text = L"Este juego fue hecho por \r\nHamill, Elvis y Aldo!\r\n";
 			this->lbl_creditos->Visible = false;
-			// 
-			// txt_instruc1
-			// 
-			this->txt_instruc1->Location = System::Drawing::Point(365, 304);
-			this->txt_instruc1->Multiline = true;
-			this->txt_instruc1->Name = L"txt_instruc1";
-			this->txt_instruc1->ReadOnly = true;
-			this->txt_instruc1->Size = System::Drawing::Size(338, 49);
-			this->txt_instruc1->TabIndex = 5;
-			this->txt_instruc1->Text = L"Intrucciones:\r\nTe mueves con las teclas WASD\r\nDisparas haciendo click dentro de l"
-				L"a ventana";
-			this->txt_instruc1->Visible = false;
-			// 
-			// txt_instruc2
-			// 
-			this->txt_instruc2->Location = System::Drawing::Point(365, 359);
-			this->txt_instruc2->Multiline = true;
-			this->txt_instruc2->Name = L"txt_instruc2";
-			this->txt_instruc2->ReadOnly = true;
-			this->txt_instruc2->Size = System::Drawing::Size(283, 59);
-			this->txt_instruc2->TabIndex = 6;
-			this->txt_instruc2->Text = L"Tu misión es matar a los enemigos sin morir en el intento\r\nCuando acabes con la c"
-				L"antidad pedida de enemigos subirás un nivel\r\nCompleta el nivel 5 y gana el juego"
-				L"!";
-			this->txt_instruc2->Visible = false;
 			// 
 			// lbl_vidas
 			// 
@@ -238,31 +192,11 @@ namespace TrabajoFinal1 {
 			this->btn_menu->Visible = false;
 			this->btn_menu->Click += gcnew System::EventHandler(this, &MyForm::btn_menu_Click);
 			// 
-			// lblVidas
-			// 
-			this->lblVidas->AutoSize = true;
-			this->lblVidas->Location = System::Drawing::Point(278, 262);
-			this->lblVidas->Name = L"lblVidas";
-			this->lblVidas->Size = System::Drawing::Size(104, 26);
-			this->lblVidas->TabIndex = 14;
-			this->lblVidas->Text = L"Vidas: deben ser de \r\n10 a 100";
-			// 
-			// lblTiempo
-			// 
-			this->lblTiempo->AutoSize = true;
-			this->lblTiempo->Location = System::Drawing::Point(695, 262);
-			this->lblTiempo->Name = L"lblTiempo";
-			this->lblTiempo->Size = System::Drawing::Size(112, 26);
-			this->lblTiempo->TabIndex = 15;
-			this->lblTiempo->Text = L"El tiempo debe ser de \r\n3 a 10 minutos\r\n";
-			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1105, 595);
-			this->Controls->Add(this->lblTiempo);
-			this->Controls->Add(this->lblVidas);
 			this->Controls->Add(this->btn_menu);
 			this->Controls->Add(this->lbl_enemigosNivel);
 			this->Controls->Add(this->lbl_enemigosRestantes);
@@ -270,12 +204,9 @@ namespace TrabajoFinal1 {
 			this->Controls->Add(this->txt_vidas);
 			this->Controls->Add(this->lbl_tiempo);
 			this->Controls->Add(this->lbl_vidas);
-			this->Controls->Add(this->txt_instruc2);
-			this->Controls->Add(this->txt_instruc1);
 			this->Controls->Add(this->lbl_creditos);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
 			this->DoubleBuffered = true;
 			this->Name = L"MyForm";
 			this->Text = L"Juego!";
@@ -382,19 +313,11 @@ namespace TrabajoFinal1 {
 				button1->Visible = false;
 				button1->Enabled = false;
 
-				button2->Visible = false;
-				button2->Enabled = false;
-
 				button3->Visible = false;
 				button3->Enabled = false;
 
 				lbl_creditos->Visible = false;
 				lbl_creditos->Enabled = false;
-
-				txt_instruc1->Visible = false;
-				txt_instruc1->Enabled = false;
-				txt_instruc2->Visible = false;
-				txt_instruc2->Enabled = false;
 
 				lbl_vidas->Visible = true;
 				lbl_vidas->Enabled = true;
@@ -407,11 +330,6 @@ namespace TrabajoFinal1 {
 				txt_vidas->Enabled = false;
 				txt_tiempo->Visible = false;
 				txt_tiempo->Enabled = false;
-
-				lblTiempo->Visible = false;
-				lblTiempo->Enabled = false;
-				lblVidas->Visible = false;
-				lblVidas->Enabled = false;
 
 				lbl_enemigosNivel->Visible = true;
 				lbl_enemigosNivel->Enabled = true;
@@ -434,19 +352,6 @@ namespace TrabajoFinal1 {
 				MessageBox::Show("Valor de vidas incorrecto!");
 				MessageBox::Show("Valor del tiempo tambien está incorrecto lol!");
 			}
-		}
-	}
-	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e)
-	{
-		if (txt_instruc1->Visible == true)
-		{
-			txt_instruc1->Visible = false;
-			txt_instruc2->Visible = false;
-		}
-		else
-		{
-			txt_instruc1->Visible = true;
-			txt_instruc2->Visible = true;
 		}
 	}
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e)

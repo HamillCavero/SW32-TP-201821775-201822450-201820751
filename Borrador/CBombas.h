@@ -28,7 +28,8 @@ public:
 	int agregarVarias(Bitmap^ otrasImagnes, int ancho, int alto, int nivel)
 	{
 		Random  r;
-		int n = r.Next(10 * pow(1.5, nivel - 1), 15 * pow(1.5, nivel - 1));
+		//int n = r.Next(10 * pow(1.5, nivel - 1), 15 * pow(1.5, nivel - 1));
+		int n = r.Next(10 * pow(1, nivel - 1), 15 * pow(1, nivel - 1));
 		System::Threading::Thread::Sleep(5);
 		for (int i = 0; i <= n; i++)
 		{
@@ -60,40 +61,40 @@ public:
 		return n + M;
 	}
 
-	int agregarVarias(Bitmap^ bomba, Bitmap^ bomba2, Bitmap^ bomba3, Bitmap^ enemigo_grande1, Bitmap^ enemigo_grande2, int ancho, int alto, int nivel)
-	{
-		Random  r;
-		int n = r.Next(10 * pow(1.5, nivel - 1), 15 * pow(1.5, nivel - 1));
-		System::Threading::Thread::Sleep(5);
-		for (int i = 0; i <= n; i++)
-		{
-			int t = r.Next(0, 3);
-			System::Threading::Thread::Sleep(15);
-			switch (t)
-			{
-			case 0: bombas->push_back(new CBomba(bomba, ancho, alto, 1, 1, nivel)); break;
-			case 1: bombas->push_back(new CBomba(bomba2, ancho, alto, 1, 2, nivel)); break;
-			case 2: bombas->push_back(new CBomba(bomba3, ancho, alto, 1, 3, nivel)); break;
-			default:
-				break;
-			}
-		}
-		int M = r.Next(3, 6 + nivel);
-		System::Threading::Thread::Sleep(5);
-		for (int i = 0; i <= n; i++)
-		{
-			int t = r.Next(0, 2);
-			System::Threading::Thread::Sleep(5);
-			switch (t)
-			{
-			case 0: bombas->push_back(new CBomba(enemigo_grande1, ancho, alto, 2, 4, nivel)); break;
-			case 1: bombas->push_back(new CBomba(enemigo_grande2, ancho, alto, 2, 5, nivel)); break;
-			default:
-				break;
-			}
-		}
-		return n + M;
-	}
+	//int agregarVarias(Bitmap^ bomba, Bitmap^ bomba2, Bitmap^ bomba3, Bitmap^ enemigo_grande1, Bitmap^ enemigo_grande2, int ancho, int alto, int nivel)
+	//{
+	//	Random  r;
+	//	int n = r.Next(10 * pow(1.5, nivel - 1), 15 * pow(1.5, nivel - 1));
+	//	System::Threading::Thread::Sleep(5);
+	//	for (int i = 0; i <= n; i++)
+	//	{
+	//		int t = r.Next(0, 3);
+	//		System::Threading::Thread::Sleep(15);
+	//		switch (t)
+	//		{
+	//		case 0: bombas->push_back(new CBomba(bomba, ancho, alto, 1, 1, nivel)); break;
+	//		case 1: bombas->push_back(new CBomba(bomba2, ancho, alto, 1, 2, nivel)); break;
+	//		case 2: bombas->push_back(new CBomba(bomba3, ancho, alto, 1, 3, nivel)); break;
+	//		default:
+	//			break;
+	//		}
+	//	}
+	//	int M = r.Next(3, 6 + nivel);
+	//	System::Threading::Thread::Sleep(5);
+	//	for (int i = 0; i <= n; i++)
+	//	{
+	//		int t = r.Next(0, 2);
+	//		System::Threading::Thread::Sleep(5);
+	//		switch (t)
+	//		{
+	//		case 0: bombas->push_back(new CBomba(enemigo_grande1, ancho, alto, 2, 4, nivel)); break;
+	//		case 1: bombas->push_back(new CBomba(enemigo_grande2, ancho, alto, 2, 5, nivel)); break;
+	//		default:
+	//			break;
+	//		}
+	//	}
+	//	return n + M;
+	//}
 
 	void disparar(vector<Bala*>* VecBala)
 	{
@@ -121,7 +122,7 @@ public:
 		{
 			if (bombas->at(i)->getVida() <= 0)
 			{
-				player->crecer(bombas->at(i)->getTipo());
+				//player->crecer(bombas->at(i)->getTipo());
 
 				borrarBomba(i);
 				return true;
