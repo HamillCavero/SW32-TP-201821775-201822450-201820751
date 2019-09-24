@@ -10,9 +10,9 @@ namespace TrabajoFinal1 {
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Label^  lbl_creditos;
 	private: System::Windows::Forms::Label^  lbl_vidas;
-	private: System::Windows::Forms::Label^  lbl_tiempo;
-	private: System::Windows::Forms::TextBox^  txt_vidas;
-	private: System::Windows::Forms::TextBox^  txt_tiempo;
+	//private: System::Windows::Forms::Label^  lbl_tiempo;
+	//private: System::Windows::Forms::TextBox^  txt_vidas;
+	//private: System::Windows::Forms::TextBox^  txt_tiempo;
 	private: System::Windows::Forms::Label^  lbl_enemigosRestantes;
 	private: System::Windows::Forms::Label^  lbl_enemigosNivel;
 	private: System::Windows::Forms::Button^  btn_menu;
@@ -23,10 +23,10 @@ namespace TrabajoFinal1 {
 			 Bitmap^ terreno;
 			 Bitmap^nuevoJ1;
 			 int tiempo_minutos;
-			 int tiempo_segundos;
+			 //int tiempo_segundos;
 			 int vidas;
 			 int direccion;
-			 int CurrrentLvL = 1;
+			 //int CurrrentLvL = 1;
 			 Juego* Control;
 			 Bitmap^ otrasImagenes;
 			 float angle;
@@ -41,7 +41,7 @@ namespace TrabajoFinal1 {
 			tiempo_minutos = 0;
 			vidas = 0;
 			direccion = 0;
-			tiempo_segundos = 0;
+			//tiempo_segundos = 0;
 			angle = 0;
 			otrasImagenes = gcnew Bitmap("objetosVarios.png");
 			Control = new Juego(otrasImagenes, this->Width, this->Height, 1);
@@ -69,9 +69,9 @@ namespace TrabajoFinal1 {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->lbl_creditos = (gcnew System::Windows::Forms::Label());
 			this->lbl_vidas = (gcnew System::Windows::Forms::Label());
-			this->lbl_tiempo = (gcnew System::Windows::Forms::Label());
-			this->txt_vidas = (gcnew System::Windows::Forms::TextBox());
-			this->txt_tiempo = (gcnew System::Windows::Forms::TextBox());
+			//this->lbl_tiempo = (gcnew System::Windows::Forms::Label());
+			//this->txt_vidas = (gcnew System::Windows::Forms::TextBox());
+			//this->txt_tiempo = (gcnew System::Windows::Forms::TextBox());
 			this->lbl_enemigosRestantes = (gcnew System::Windows::Forms::Label());
 			this->lbl_enemigosNivel = (gcnew System::Windows::Forms::Label());
 			this->btn_menu = (gcnew System::Windows::Forms::Button());
@@ -126,35 +126,35 @@ namespace TrabajoFinal1 {
 			this->lbl_vidas->TabIndex = 7;
 			this->lbl_vidas->Text = L"VIDAS:";
 			this->lbl_vidas->Visible = false;
-			// 
-			// lbl_tiempo
-			// 
-			this->lbl_tiempo->AutoSize = true;
-			this->lbl_tiempo->Enabled = false;
-			this->lbl_tiempo->Location = System::Drawing::Point(135, 13);
-			this->lbl_tiempo->Name = L"lbl_tiempo";
-			this->lbl_tiempo->Size = System::Drawing::Size(51, 13);
-			this->lbl_tiempo->TabIndex = 8;
-			this->lbl_tiempo->Text = L"TIEMPO:";
-			this->lbl_tiempo->Visible = false;
-			// 
-			// txt_vidas
-			// 
-			this->txt_vidas->Location = System::Drawing::Point(401, 268);
-			this->txt_vidas->Name = L"txt_vidas";
-			this->txt_vidas->Size = System::Drawing::Size(100, 20);
-			this->txt_vidas->TabIndex = 9;
-			this->txt_vidas->Text = L"33";
-			this->txt_vidas->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::reconocerNumero);
-			// 
-			// txt_tiempo
-			// 
-			this->txt_tiempo->Location = System::Drawing::Point(589, 268);
-			this->txt_tiempo->Name = L"txt_tiempo";
-			this->txt_tiempo->Size = System::Drawing::Size(100, 20);
-			this->txt_tiempo->TabIndex = 10;
-			this->txt_tiempo->Text = L"3";
-			this->txt_tiempo->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::reconocerNumero);
+			//// 
+			//// lbl_tiempo
+			//// 
+			//this->lbl_tiempo->AutoSize = true;
+			//this->lbl_tiempo->Enabled = false;
+			//this->lbl_tiempo->Location = System::Drawing::Point(135, 13);
+			//this->lbl_tiempo->Name = L"lbl_tiempo";
+			//this->lbl_tiempo->Size = System::Drawing::Size(51, 13);
+			//this->lbl_tiempo->TabIndex = 8;
+			//this->lbl_tiempo->Text = L"TIEMPO:";
+			//this->lbl_tiempo->Visible = false;
+			//// 
+			//// txt_vidas
+			//// 
+			//this->txt_vidas->Location = System::Drawing::Point(401, 268);
+			//this->txt_vidas->Name = L"txt_vidas";
+			//this->txt_vidas->Size = System::Drawing::Size(100, 20);
+			//this->txt_vidas->TabIndex = 9;
+			//this->txt_vidas->Text = L"33";
+			//this->txt_vidas->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::reconocerNumero);
+			//// 
+			//// txt_tiempo
+			//// 
+			//this->txt_tiempo->Location = System::Drawing::Point(589, 268);
+			//this->txt_tiempo->Name = L"txt_tiempo";
+			//this->txt_tiempo->Size = System::Drawing::Size(100, 20);
+			//this->txt_tiempo->TabIndex = 10;
+			//this->txt_tiempo->Text = L"3";
+			//this->txt_tiempo->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::reconocerNumero);
 			// 
 			// lbl_enemigosRestantes
 			// 
@@ -200,9 +200,9 @@ namespace TrabajoFinal1 {
 			this->Controls->Add(this->btn_menu);
 			this->Controls->Add(this->lbl_enemigosNivel);
 			this->Controls->Add(this->lbl_enemigosRestantes);
-			this->Controls->Add(this->txt_tiempo);
-			this->Controls->Add(this->txt_vidas);
-			this->Controls->Add(this->lbl_tiempo);
+			//this->Controls->Add(this->txt_tiempo);
+			//this->Controls->Add(this->txt_vidas);
+			//this->Controls->Add(this->lbl_tiempo);
 			this->Controls->Add(this->lbl_vidas);
 			this->Controls->Add(this->lbl_creditos);
 			this->Controls->Add(this->button1);
@@ -220,7 +220,8 @@ namespace TrabajoFinal1 {
 		}
 #pragma endregion
 	private: System::Void Animar(System::Object^  sender, System::EventArgs^  e) {
-		if (Control->getLvl() != 6 && Control->getSoldado()->getVida() > 0 && tiempo_segundos > 0)
+		if (Control->getLvl() != 6 && Control->getSoldado()->getVida() > 0)
+		//if (Control->getLvl() != 6 && Control->getSoldado()->getVida() > 0 && tiempo_segundos > 0)
 		{
 			Control->Dibujar(buffer, nuevoJ1, terreno, this->ClientRectangle, otrasImagenes, angle);
 			Control->MoverPersonaje(direccion, this->Width, this->Height);
@@ -229,7 +230,7 @@ namespace TrabajoFinal1 {
 			Control->Eliminar(this->Width, this->Height);
 
 			lbl_vidas->Text = "Vidas: " + Control->getSoldado()->getVida();
-			lbl_tiempo->Text = "Tiempo: " + tiempo_segundos / 30 ;
+			//lbl_tiempo->Text = "Tiempo: " + tiempo_segundos / 30 ;
 			lbl_enemigosRestantes->Text = "Enemigos restantes: " + Control->getEnemigosRestantes();
 			lbl_enemigosNivel->Text = "Enemigos a matar: " + Control->getEnemigosTotales();
 			if (Control->getEnemigosRestantes() <= Control->getEnemigosTotales() / 2) {
@@ -246,7 +247,7 @@ namespace TrabajoFinal1 {
 				}
 			}
 			buffer->Render();
-			tiempo_segundos--;
+			//tiempo_segundos--;
 		}
 		else
 		{
@@ -304,10 +305,38 @@ namespace TrabajoFinal1 {
 		direccion = 0;
 	}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		int vidas = int::Parse(txt_vidas->Text);
-		tiempo_minutos = int::Parse(txt_tiempo->Text);
-		tiempo_segundos = tiempo_minutos * 60 * 30;
-		if (vidas <= 100 && vidas >= 10)
+		//int vidas = int::Parse(txt_vidas->Text);
+		int vidas = 100;
+		//tiempo_minutos = int::Parse(txt_tiempo->Text);
+		//tiempo_segundos = tiempo_minutos * 60 * 30;
+				button1->Visible = false;
+				button1->Enabled = false;
+
+				button3->Visible = false;
+				button3->Enabled = false;
+
+				lbl_creditos->Visible = false;
+				lbl_creditos->Enabled = false;
+
+				lbl_vidas->Visible = true;
+				lbl_vidas->Enabled = true;
+				//lbl_tiempo->Visible = true;
+				//lbl_tiempo->Enabled = true;
+				timer1->Enabled = true;
+				timer2->Enabled = true;
+				Control->getSoldado()->iniciarVida(vidas);
+				/*txt_vidas->Visible = false;
+				txt_vidas->Enabled = false;*/
+				/*txt_tiempo->Visible = false;
+				txt_tiempo->Enabled = false;*/
+
+				lbl_enemigosNivel->Visible = true;
+				lbl_enemigosNivel->Enabled = true;
+				lbl_enemigosRestantes->Visible = true;
+				lbl_enemigosRestantes->Enabled = true;
+
+
+		/*if (vidas <= 100 && vidas >= 10)
 		{
 			if (tiempo_minutos >= 3 && tiempo_minutos <= 10) {
 				button1->Visible = false;
@@ -340,8 +369,8 @@ namespace TrabajoFinal1 {
 			{
 				MessageBox::Show("Valor de tiempo incorrecto!");
 			}
-		}
-		else
+		}*/
+		/*else
 		{
 			if (tiempo_minutos >= 3 && tiempo_minutos <= 10)
 			{
@@ -352,7 +381,7 @@ namespace TrabajoFinal1 {
 				MessageBox::Show("Valor de vidas incorrecto!");
 				MessageBox::Show("Valor del tiempo tambien está incorrecto lol!");
 			}
-		}
+		}*/
 	}
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e)
 	{
@@ -370,8 +399,9 @@ namespace TrabajoFinal1 {
 		if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 0x08) e->Handled = true;
 	}
 	private: System::Void btn_menu_Click(System::Object^  sender, System::EventArgs^  e) {
-		vidas = int::Parse(txt_vidas->Text);
-		tiempo_minutos = int::Parse(txt_tiempo->Text);
+		vidas = 100;
+		/*vidas = int::Parse(txt_vidas->Text);
+		tiempo_minutos = int::Parse(txt_tiempo->Text);*/
 		Control->getSoldado()->iniciarVida(vidas);
 		Control->reiniciar(otrasImagenes, this->Width, this->Height);
 

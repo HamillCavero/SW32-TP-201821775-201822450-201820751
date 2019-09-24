@@ -1,9 +1,9 @@
 #pragma once
-#include <vector>
+//#include <vector>
 #include <time.h>
 #include <cstdlib>
 #include <math.h>
-#include "CObjeto.h"
+//#include "CObjeto.h"
 #include "CBala.h"
 #include "CSoldado.h"
 using namespace std;
