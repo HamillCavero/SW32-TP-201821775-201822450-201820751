@@ -407,4 +407,6 @@ public:
 	void setPos(int limitX, int limitY) { x = limitX / 2; y = limitY / 2; }
 	int getAlto() { return alto_actual; }
 	int getAncho() { return ancho_actual; }
+
+	
 };

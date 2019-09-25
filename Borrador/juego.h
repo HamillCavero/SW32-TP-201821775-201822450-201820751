@@ -3,9 +3,12 @@
 #include <time.h>
 #include <cstdlib>
 #include <math.h>
+#include <fstream>
+#include <stdlib.h>
 #include "CSoldado.h"
 #include "CBombas.h"
 #include "CMapa.h"
+
 using namespace std;
 using namespace System;
 using namespace System::ComponentModel;
@@ -131,6 +134,18 @@ public:
 		enemigosRestantes = enemigosTotales;
 		//sold->decrecer();
 	}
+	void escribir()
+	{
+		ofstream archivopos;
+		archivopos.open("Posicion.txt", ios::out);
+		if (archivopos.fail()) 
+		{
+			exit(1);
+		}
+		archivopos << sold->getX() << "," << sold->getY();
+		archivopos.close();
+	}
+
 #pragma endregion
 
 };

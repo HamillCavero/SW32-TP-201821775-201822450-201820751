@@ -24,4 +24,6 @@ public:
 	{
 		return pow(pow(this->x - posicionX, 2) + pow(this->y - posicionY, 2), 0.5);
 	}
+	void setx(int x) { this->x = x; }
+	void sety(int y) { this->y = y; }
 };

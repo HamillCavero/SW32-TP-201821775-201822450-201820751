@@ -1,5 +1,9 @@
 #pragma once
 #include "juego.h"
+#include <fstream>
+#include <stdlib.h>
+#include <sstream>
+#include<string>
 #include <ctime>
 namespace TrabajoFinal1 {
 	public ref class MyForm : public System::Windows::Forms::Form
@@ -30,7 +34,9 @@ namespace TrabajoFinal1 {
 			 Juego* Control;
 			 Bitmap^ otrasImagenes;
 			 float angle;
+	private: System::Windows::Forms::Button^  btn_pos;
 			 Bitmap^fondo;
+			
 	public:
 		MyForm(void)
 		{
@@ -69,12 +75,10 @@ namespace TrabajoFinal1 {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->lbl_creditos = (gcnew System::Windows::Forms::Label());
 			this->lbl_vidas = (gcnew System::Windows::Forms::Label());
-			//this->lbl_tiempo = (gcnew System::Windows::Forms::Label());
-			//this->txt_vidas = (gcnew System::Windows::Forms::TextBox());
-			//this->txt_tiempo = (gcnew System::Windows::Forms::TextBox());
 			this->lbl_enemigosRestantes = (gcnew System::Windows::Forms::Label());
 			this->lbl_enemigosNivel = (gcnew System::Windows::Forms::Label());
 			this->btn_menu = (gcnew System::Windows::Forms::Button());
+			this->btn_pos = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// timer1
@@ -126,35 +130,6 @@ namespace TrabajoFinal1 {
 			this->lbl_vidas->TabIndex = 7;
 			this->lbl_vidas->Text = L"VIDAS:";
 			this->lbl_vidas->Visible = false;
-			//// 
-			//// lbl_tiempo
-			//// 
-			//this->lbl_tiempo->AutoSize = true;
-			//this->lbl_tiempo->Enabled = false;
-			//this->lbl_tiempo->Location = System::Drawing::Point(135, 13);
-			//this->lbl_tiempo->Name = L"lbl_tiempo";
-			//this->lbl_tiempo->Size = System::Drawing::Size(51, 13);
-			//this->lbl_tiempo->TabIndex = 8;
-			//this->lbl_tiempo->Text = L"TIEMPO:";
-			//this->lbl_tiempo->Visible = false;
-			//// 
-			//// txt_vidas
-			//// 
-			//this->txt_vidas->Location = System::Drawing::Point(401, 268);
-			//this->txt_vidas->Name = L"txt_vidas";
-			//this->txt_vidas->Size = System::Drawing::Size(100, 20);
-			//this->txt_vidas->TabIndex = 9;
-			//this->txt_vidas->Text = L"33";
-			//this->txt_vidas->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::reconocerNumero);
-			//// 
-			//// txt_tiempo
-			//// 
-			//this->txt_tiempo->Location = System::Drawing::Point(589, 268);
-			//this->txt_tiempo->Name = L"txt_tiempo";
-			//this->txt_tiempo->Size = System::Drawing::Size(100, 20);
-			//this->txt_tiempo->TabIndex = 10;
-			//this->txt_tiempo->Text = L"3";
-			//this->txt_tiempo->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::reconocerNumero);
 			// 
 			// lbl_enemigosRestantes
 			// 
@@ -181,7 +156,7 @@ namespace TrabajoFinal1 {
 			// btn_menu
 			// 
 			this->btn_menu->Enabled = false;
-			this->btn_menu->Font = (gcnew System::Drawing::Font(L"BubbleGum", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btn_menu->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btn_menu->Location = System::Drawing::Point(442, 240);
 			this->btn_menu->Name = L"btn_menu";
@@ -192,17 +167,25 @@ namespace TrabajoFinal1 {
 			this->btn_menu->Visible = false;
 			this->btn_menu->Click += gcnew System::EventHandler(this, &MyForm::btn_menu_Click);
 			// 
+			// btn_pos
+			// 
+			this->btn_pos->Location = System::Drawing::Point(726, 251);
+			this->btn_pos->Name = L"btn_pos";
+			this->btn_pos->Size = System::Drawing::Size(112, 23);
+			this->btn_pos->TabIndex = 14;
+			this->btn_pos->Text = L"ULTIMAPOSICIÓN";
+			this->btn_pos->UseVisualStyleBackColor = true;
+			this->btn_pos->Click += gcnew System::EventHandler(this, &MyForm::btn_pos_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1105, 595);
+			this->Controls->Add(this->btn_pos);
 			this->Controls->Add(this->btn_menu);
 			this->Controls->Add(this->lbl_enemigosNivel);
 			this->Controls->Add(this->lbl_enemigosRestantes);
-			//this->Controls->Add(this->txt_tiempo);
-			//this->Controls->Add(this->txt_vidas);
-			//this->Controls->Add(this->lbl_tiempo);
 			this->Controls->Add(this->lbl_vidas);
 			this->Controls->Add(this->lbl_creditos);
 			this->Controls->Add(this->button1);
@@ -219,12 +202,15 @@ namespace TrabajoFinal1 {
 
 		}
 #pragma endregion
-	private: System::Void Animar(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void Animar(System::Object^  sender, System::EventArgs^  e) 
+	{
+
 		if (Control->getLvl() != 6 && Control->getSoldado()->getVida() > 0)
 		//if (Control->getLvl() != 6 && Control->getSoldado()->getVida() > 0 && tiempo_segundos > 0)
 		{
 			Control->Dibujar(buffer, nuevoJ1, terreno, this->ClientRectangle, otrasImagenes, angle);
 			Control->MoverPersonaje(direccion, this->Width, this->Height);
+			Control->escribir();
 			Control->MoverEnemigos(Control->getSoldado()->getX(), Control->getSoldado()->getY(), this->Width, this->Height);
 			Control->moverbala();
 			Control->Eliminar(this->Width, this->Height);
@@ -311,7 +297,10 @@ namespace TrabajoFinal1 {
 		//tiempo_segundos = tiempo_minutos * 60 * 30;
 				button1->Visible = false;
 				button1->Enabled = false;
-
+				
+				btn_pos->Visible = false;
+				btn_pos->Enabled = false;
+				
 				button3->Visible = false;
 				button3->Enabled = false;
 
@@ -422,6 +411,48 @@ namespace TrabajoFinal1 {
 	{
 		angle = atan2(Control->getSoldado()->getY() + (Control->getSoldado()->getAlto() / 2) - e->Y, Control->getSoldado()->getX() + (Control->getSoldado()->getAncho() / 2) - e->X) / 3.1416 * 180;
 	}
-	};
+	private: System::Void btn_pos_Click(System::Object^  sender, System::EventArgs^  e) 
+	{
+			ifstream pos;
+			pos.open("Posicion.txt", ios::in);
+			int x;
+			int  posX, posY;
+			if (pos.fail())
+			{
+				exit(1);
+			}
+				string line;
+				while (getline(pos, line)) {
+					istringstream iss(line);	
+					string x;
+					getline(iss, x, ',');
+					 posX = stoi(x);
+					getline(iss, x);
+					 posY = stoi(x);
+			}
+				pos.close();
+				vidas = 100;
+				Control->getSoldado()->iniciarVida(vidas);
+				Control->reiniciar(otrasImagenes, this->Width, this->Height);
+				Control->getSoldado()->setx(posX);
+				Control->getSoldado()->sety(posY);
+
+				terreno = gcnew Bitmap("fondo" + Control->getLvl() + ".jpg");
+				nuevoJ1 = gcnew Bitmap("jugadorN" + Control->getLvl() + ".png");
+				timer1->Interval = 100;
+				timer2->Interval = 300;
+				timer2->Start();
+				timer1->Start();
+
+				button1->Visible = false;
+				button1->Enabled = false;
+
+				button3->Visible = false;
+				button3->Enabled = false;
+				btn_pos->Visible = false;
+				btn_pos->Enabled = false;
+	}
+	
+};
 
 }
