@@ -60,6 +60,7 @@ namespace TrabajoFinal1 {
 		{
 			if (components)
 			{
+				Control->escribir();
 				delete components;
 			}
 		}
@@ -210,7 +211,7 @@ namespace TrabajoFinal1 {
 		{
 			Control->Dibujar(buffer, nuevoJ1, terreno, this->ClientRectangle, otrasImagenes, angle);
 			Control->MoverPersonaje(direccion, this->Width, this->Height);
-			Control->escribir();
+			//Control->escribir();
 			Control->MoverEnemigos(Control->getSoldado()->getX(), Control->getSoldado()->getY(), this->Width, this->Height);
 			Control->moverbala();
 			Control->Eliminar(this->Width, this->Height);
