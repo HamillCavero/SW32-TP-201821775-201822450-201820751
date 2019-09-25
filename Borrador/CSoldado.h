@@ -30,7 +30,7 @@ class CSoldado : public CObjeto
 	int punto6Y;
 #pragma endregion
 public:
-	CSoldado(T anchoP,T altoP) : CObjeto()
+	CSoldado(float anchoP,float altoP) : CObjeto()
 	{
 		x = anchoP / 2;
 		y = altoP / 2;
