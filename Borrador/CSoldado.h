@@ -12,7 +12,7 @@ using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
-
+//template <class T>
 class CSoldado : public CObjeto
 {
 	int ancho_actual;
@@ -30,7 +30,7 @@ class CSoldado : public CObjeto
 	int punto6Y;
 #pragma endregion
 public:
-	CSoldado(int anchoP, int altoP) : CObjeto()
+	CSoldado(T anchoP,T altoP) : CObjeto()
 	{
 		x = anchoP / 2;
 		y = altoP / 2;

@@ -5,28 +5,29 @@
 
 // Lo único que se debería ser sería adaptar esto ( creo )
 // Osea ponerle templates, el elemento del nodo debería ser un T porque ahí irían las balas y los enemigos en un futuro, 
-// espero que alguno de ustedes lea esto y ponga confirmo o una wea así
+// espero que alguno de ustedes lea esto y ponga confirmo o una wea así / CONFIRMO
+template <class T,class T2> // T2 FLOAT //T INT
 class List {
 	struct Node {
-		float elem;
+		T2 elem;
 		Node* next;
 
-		Node(float elem, Node* next = nullptr)
+		Node(T2 elem, Node* next = nullptr)
 			:elem(elem), next(next) {}
 	};
 
 	Node* head;
 	Node* tail;
-	int len;
+	T len;
 
 	class Iterator {
-		int    pos;
+		T    pos;
 		Node*  aux;
 	public:
-		Iterator(int pos, Node* aux) : pos(pos), aux(aux) {}
+		Iterator(T pos, Node* aux) : pos(pos), aux(aux) {}
 		void operator ++() { pos++; aux = aux->next; }
 		bool operator !=(Iterator x) { return pos != x.pos; }
-		float    operator  *() { return aux->elem; }
+		T2    operator  *() { return aux->elem; }
 	};
 	Iterator begin() {
 		return Iterator(0, head);
@@ -34,9 +35,9 @@ class List {
 	Iterator end() {
 		return Iterator(len, nullptr);
 	}
-	Iterator _pos(int pos) {
+	Iterator _pos(T pos) {
 		Iterator it(0, head);
-		for (int i = 0; i < pos; i++)
+		for (T i = 0; i < pos; i++)
 		{
 			++it;
 		}
@@ -60,25 +61,25 @@ public:
 	}
 
 	//devuevle el tamaño de la lista
-	int size() {
+	T size() {
 		return len;
 	}
 
 	//añade un nodo al inicio
-	void addFirst(float elem) {
+	void addFirst(T2 elem) {
 		head = new Node(elem, head);
 		++len;
 	}
 
 	//añade un nodo al final
-	void addLast(float elem) {
+	void addLast(T2 elem) {
 		tail->next = new Node(elem);
 		tail = tail->next;
 		++len;
 	}
 
 	//añade un nodo en una posición dada
-	void addPos(int pos, float elem)
+	void addPos(T pos, T2 elem)
 	{
 		if (pos == 0)
 		{
@@ -87,7 +88,7 @@ public:
 		else if (pos>0 && pos<len)
 		{
 			Node* aux1 = head;
-			for (int i = 0; i < pos - 1; i++)
+			for (T i = 0; i < pos - 1; i++)
 			{
 				aux1 = aux1->next;
 			}
@@ -102,9 +103,9 @@ public:
 	}
 
 	//devuelve la posición de un elemento
-	int find(float elem) {
+	T find(T2 elem) {
 		Node* aux = head;
-		int pos = 0;
+		T pos = 0;
 		while (aux != nullptr) {
 			if (aux->elem == elem) {
 				return pos;
@@ -129,7 +130,7 @@ public:
 	//borra el ultimo nodo
 	void delLast() {
 		Node* aux1 = head;
-		for (int i = 0; i < len - 2; i++)
+		for (T i = 0; i < len - 2; i++)
 		{
 			aux1 = aux1->next;
 		}
@@ -141,7 +142,7 @@ public:
 	}
 
 	//borra un nodo en una posición dada
-	void delPos(int pos) {
+	void delPos(T pos) {
 		if (pos == 0)
 		{
 			delFirst();
@@ -149,7 +150,7 @@ public:
 		else if (pos>0 && pos<len)
 		{
 			Node* aux1 = head;
-			for (int i = 0; i < pos - 1; i++)
+			for (T i = 0; i < pos - 1; i++)
 			{
 				aux1 = aux1->next;
 			}
@@ -165,17 +166,17 @@ public:
 	}
 
 	//devuelve el contenido del primer nodo
-	float obtenerInicial() {
+	T2 obtenerInicial() {
 		return head->elem;
 	}
 
 	//devuelve el contenido del ultimo nodo
-	float obtenerFinal() {
+	T2 obtenerFinal() {
 		return tail->elem;
 	}
 
 	//devuelve el contenido de un nodo en una posición dada
-	float obtenerPos(int pos) {
+	T2 obtenerPos(T pos) {
 		if (pos == 0)
 		{
 			obtenerInicial();
@@ -192,17 +193,17 @@ public:
 	}
 
 	//cambia el valor del elemento del primer nodo
-	void modificarInicial(float _elem) {
+	void modificarInicial(T2 _elem) {
 		head->elem = _elem;
 	}
 
 	//cambia el valor del elemento del último nodo
-	void modificarFinal(float _elem) {
+	void modificarFinal(T2 _elem) {
 		tail->elem = _elem;
 	}
 
 	//cambia el valor del elemento de un nodo en una posición dada
-	void modificarPos(int pos, float _elem) {
+	void modificarPos(T pos, T2 _elem) {
 		if (pos == 0)
 		{
 			modificarInicial(_elem);
@@ -210,7 +211,7 @@ public:
 		else if (pos>0 && pos<len)
 		{
 			Node* aux1 = head;
-			for (int i = 0; i < pos; i++)
+			for (T i = 0; i < pos; i++)
 			{
 				aux1 = aux1->next;
 			}
