@@ -220,7 +220,8 @@ namespace TrabajoFinal1 {
 			//lbl_tiempo->Text = "Tiempo: " + tiempo_segundos / 30 ;
 			lbl_enemigosRestantes->Text = "Enemigos restantes: " + Control->getEnemigosRestantes();
 			lbl_enemigosNivel->Text = "Enemigos a matar: " + Control->getEnemigosTotales();
-			if (Control->getEnemigosRestantes() <= Control->getEnemigosTotales() / 2) {
+			//if (Control->getEnemigosRestantes() <= Control->getEnemigosTotales() / 2) {
+			if (Control->getEnemigosRestantes() <=0) {
 				Control->subirNivel(this->Width, this->Height);
 				if (Control->getLvl() < 6)
 				{

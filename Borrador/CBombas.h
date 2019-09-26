@@ -70,8 +70,8 @@ public:
 	{
 		Random  r;
 		//int n = r.Next(10 * pow(1.5, nivel - 1), 15 * pow(1.5, nivel - 1));
-		//int n = r.Next(10 * pow(1, nivel - 1), 15 * pow(1, nivel - 1));
-		int n =5;
+		int n = r.Next(10 * pow(1, nivel - 1), 15 * pow(1, nivel - 1));
+		//int n =5;
 		System::Threading::Thread::Sleep(5);
 		for (int i = 0; i < n; i++)
 		{
@@ -89,8 +89,8 @@ public:
 				break;
 			}
 		}
-		//int M = r.Next(3, 6 + nivel);
-		int M =0;
+		int M = r.Next(3, 6 + nivel);
+		//int M =0;
 		System::Threading::Thread::Sleep(5);
 		for (int i = 0; i < M; i++)
 		{
