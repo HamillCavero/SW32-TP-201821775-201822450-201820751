@@ -114,7 +114,7 @@ public:
 		for (int j = 1; j < Balas_mundo->size(); j++)
 		{
 			if (hiroshima->colisionBala(Balas_mundo->obtenerPos(j))) { Balas_mundo->delPos(j); }
-			if (hiroshima->limpiarBomba(score)) { enemigosRestantes--; score += 500; }
+			if (hiroshima->limpiarBomba(score)) { enemigosRestantes--; score += 50; }
 		}
 	}
 void EliminarTodos() { hiroshima->borrarTodos(); }
@@ -164,6 +164,7 @@ void EliminarTodos() { hiroshima->borrarTodos(); }
 #pragma region mover los niveles y pausar
 	int getLvl() { return nivel; }
 	int getScore() { return score; }
+	void setScore(int n) { this->score = n; }
 	void subirNivel(int LimiAncho, int LimiAlto) {
 		if (nivel < 5)
 		{
@@ -202,29 +203,34 @@ void EliminarTodos() { hiroshima->borrarTodos(); }
 		archivopos << sold->getX() << "," << sold->getY();
 		archivopos.close();
 	}
-	void leer_score()
+	int leer_score()
 	{
 		ifstream marcadores;
 		marcadores.open("Scores.txt", ios::in);
-
+		int sscr;
+		if (marcadores.fail())
+		{
+			exit(1);
+		}
 		string line;
 		while (getline(marcadores, line)) {
 			istringstream iss(line);
 			string s;
 			getline(iss, s, ',');
-			int sscr = stoi(s);
+			 sscr = stoi(s);
 			marcador->addFirst(sscr);
 		}
 		marcadores.close();
+		return sscr;
 	}
 	void escribir_Score()
 	{
 		marcador->addFirst(score);
 
-		if (marcador->size()>3)
+		/*if (marcador->size()>3)
 		{
 			marcador->delLast();
-		}
+		}*/
 
 		ofstream archivo_score;
 		archivo_score.open("Scores.txt", ios::out);
@@ -232,17 +238,18 @@ void EliminarTodos() { hiroshima->borrarTodos(); }
 		{
 			exit(1);
 		}
-		for (int i =0; i < marcador->size(); i++)
-		{
-			//if (i!=marcador->size())
-			//{
-			archivo_score << marcador->obtenerPos(i) << ",";
-			//}
-			//else
-			//{
-			//	archivo_score << marcador->obtenerPos(i);
-			//}
-		}
+		//for (int i = 0; i < marcador->size(); i++)
+		//{
+		//	//if (i!=marcador->size())
+		//	//{
+		//	archivo_score << marcador->obtenerPos(i) << ",";
+		//	//}
+		//	//else
+		//	//{
+		//	//	archivo_score << marcador->obtenerPos(i);
+		//	//}
+		//}
+		archivo_score << score << ",";
 		
 		archivo_score.close();
 

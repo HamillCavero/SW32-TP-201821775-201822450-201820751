@@ -34,8 +34,11 @@ namespace TrabajoFinal1 {
 			 Juego* Control;
 			 Bitmap^ otrasImagenes;
 			 float angle;
+			 int lastpuntuacion ;
 	private: System::Windows::Forms::Button^  btn_pos;
 	private: System::Windows::Forms::Label^  lbl_score;
+	private: System::Windows::Forms::Label^  label1;
+
 			 Bitmap^fondo;
 			
 	public:
@@ -50,6 +53,7 @@ namespace TrabajoFinal1 {
 			direccion = 0;
 			//tiempo_segundos = 0;
 			angle = 0;
+			lastpuntuacion = 0;
 			otrasImagenes = gcnew Bitmap("objetosVarios.png");
 			Control = new Juego(otrasImagenes, this->Width, this->Height, 1);
 			terreno = gcnew Bitmap("fondo" + Control->getLvl() + ".jpg");
@@ -83,6 +87,7 @@ namespace TrabajoFinal1 {
 			this->btn_menu = (gcnew System::Windows::Forms::Button());
 			this->btn_pos = (gcnew System::Windows::Forms::Button());
 			this->lbl_score = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// timer1
@@ -190,12 +195,25 @@ namespace TrabajoFinal1 {
 			this->lbl_score->TabIndex = 15;
 			this->lbl_score->Text = L"SCORE: ";
 			this->lbl_score->Visible = false;
+		
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Enabled = false;
+			this->label1->Location = System::Drawing::Point(806, 13);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(96, 13);
+			this->label1->TabIndex = 16;
+			this->label1->Text = L"Ultima Puntuación:";
+			this->label1->Visible = false;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1105, 595);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->lbl_score);
 			this->Controls->Add(this->btn_pos);
 			this->Controls->Add(this->btn_menu);
@@ -235,6 +253,7 @@ namespace TrabajoFinal1 {
 			//lbl_tiempo->Text = "Tiempo: " + tiempo_segundos / 30 ;
 			lbl_enemigosRestantes->Text = "Enemigos restantes: " + Control->getEnemigosRestantes();
 			lbl_enemigosNivel->Text = "Enemigos a matar: " + Control->getEnemigosTotales();
+			label1->Text = "Ultima Puntuación: "+ lastpuntuacion;
 			//if (Control->getEnemigosRestantes() <= Control->getEnemigosTotales() / 2) {
 			//if (Control->getEnemigosRestantes() <=0) {
 			//	//Control->subirNivel(this->Width, this->Height);
@@ -345,7 +364,10 @@ namespace TrabajoFinal1 {
 				lbl_enemigosNivel->Enabled = true;
 				lbl_enemigosRestantes->Visible = true;
 				lbl_enemigosRestantes->Enabled = true;
-
+				label1->Visible = true;
+				label1->Enabled = true;
+				lastpuntuacion=Control->leer_score();
+				
 
 		/*if (vidas <= 100 && vidas >= 10)
 		{
@@ -474,7 +496,7 @@ namespace TrabajoFinal1 {
 				btn_pos->Visible = false;
 				btn_pos->Enabled = false;
 	}
-	
+
 };
 
 }

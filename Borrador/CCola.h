@@ -56,7 +56,8 @@ public:
 		return len;
 	}
 
-	void addFirst(T1 elem) {
+	void addFirst(T1 elem) 
+	{
 			Node* aux = new Node(elem, head);
 			if (aux!=nullptr)
 			{
