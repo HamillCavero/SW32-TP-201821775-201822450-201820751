@@ -81,28 +81,9 @@ public:
 	{
 		Balas_mundo->juicio();
 	}
-	//void Eliminar(int LimiAncho, int LimiAlto)
-	//{
-	//	if (hiroshima->borrarBomba(sold)) { enemigosRestantes--; }
-	//	//hiroshima->borrarBomba(LimiAncho, LimiAlto);
-	//	for (int j = 0; j < VecBala->size(); j++)
-	//	{
-	//		if (sold->choque(VecBala->at(j)))
-	//		{
-	//			VecBala->erase(VecBala->begin() + j);
-	//			sold->setVida(2);
-	//		}
-	//	}
-	//	for (int j = 0; j < VecBala->size(); j++)
-	//	{
-	//		if (hiroshima->colisionBala(VecBala->at(j))) { VecBala->erase(VecBala->begin() + j); }
-	//		if (hiroshima->limpiarBomba(sold)) { enemigosRestantes--; }
-	//	}
-	//}
 	void Eliminar(int LimiAncho, int LimiAlto)
 	{
 		if (hiroshima->borrarBomba(sold)) { enemigosRestantes--; }
-		//hiroshima->borrarBomba(LimiAncho, LimiAlto);
 		for (int j =1; j < Balas_mundo->size(); j++)
 		{
 			if (sold->choque(Balas_mundo->obtenerPos(j)))
@@ -138,18 +119,6 @@ void EliminarTodos() { hiroshima->borrarTodos(); }
 			Balas_mundo->obtenerPos(i)->Dibujar(buffer, objetos);
 		}
 	}
-	/*void Dibujar(BufferedGraphics^ buffer, Bitmap^ soldado, Bitmap^ mapita, Rectangle tmñn, Bitmap^objetos, float angulo)
-	{
-		mapa->Dibujar(buffer, mapita, tmñn);
-		hiroshima->DibujarBombas(buffer, objetos);
-
-		sold->Dibujar(buffer, soldado, angulo);
-
-		for (int i = 0; i < VecBala->size(); i++)
-		{
-			VecBala->at(i)->Dibujar(buffer, objetos);
-		}
-	}*/
 	void moverbala()
 	{
 		for (int i = 1; i < Balas_mundo->size()-1; i++) { Balas_mundo->obtenerPos(i)->mover(); }
@@ -226,29 +195,12 @@ void EliminarTodos() { hiroshima->borrarTodos(); }
 	void escribir_Score()
 	{
 		marcador->addFirst(score);
-
-		/*if (marcador->size()>3)
-		{
-			marcador->delLast();
-		}*/
-
 		ofstream archivo_score;
 		archivo_score.open("Scores.txt", ios::out);
 		if (archivo_score.fail())
 		{
 			exit(1);
 		}
-		//for (int i = 0; i < marcador->size(); i++)
-		//{
-		//	//if (i!=marcador->size())
-		//	//{
-		//	archivo_score << marcador->obtenerPos(i) << ",";
-		//	//}
-		//	//else
-		//	//{
-		//	//	archivo_score << marcador->obtenerPos(i);
-		//	//}
-		//}
 		archivo_score << score << ",";
 		
 		archivo_score.close();
