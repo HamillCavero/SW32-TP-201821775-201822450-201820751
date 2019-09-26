@@ -24,7 +24,6 @@ class Juego
 #pragma region variables iniciales
 	CSoldado* sold;
 	Mapa* mapa;
-	CCola<int>* marcador;
 	List<Bala*>* Balas_mundo;
 	vector<Bala*>* VecBala;
 	CBombas* hiroshima;
@@ -33,6 +32,7 @@ class Juego
 	int enemigosTotales;
 	int enemigosRestantes;
 	int score;
+	CCola<int>* marcador;
 #pragma endregion
 public:
 	Juego(Bitmap^ otrasImagnes, int anchoP, int altoP, int nivel)
@@ -47,7 +47,7 @@ public:
 		Balas_mundo = new 	List<Bala*>;
 		enemigosTotales = AgregarVArias(otrasImagnes, anchoP, altoP);
 		enemigosRestantes = enemigosTotales;
-		leer_score();
+		//leer_score();
 	}
 
 	~Juego()
@@ -221,7 +221,7 @@ void EliminarTodos() { hiroshima->borrarTodos(); }
 	{
 		marcador->addFirst(score);
 
-		if (marcador->size()>6)
+		if (marcador->size()>3)
 		{
 			marcador->delLast();
 		}
@@ -234,15 +234,16 @@ void EliminarTodos() { hiroshima->borrarTodos(); }
 		}
 		for (int i =0; i < marcador->size(); i++)
 		{
-			if (i!=marcador->size())
-			{
+			//if (i!=marcador->size())
+			//{
 			archivo_score << marcador->obtenerPos(i) << ",";
-			}
-			else
-			{
-				archivo_score << marcador->obtenerPos(i );
-			}
+			//}
+			//else
+			//{
+			//	archivo_score << marcador->obtenerPos(i);
+			//}
 		}
+		
 		archivo_score.close();
 
 	}
