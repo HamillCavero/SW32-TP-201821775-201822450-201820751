@@ -140,7 +140,7 @@
     <ClInclude Include="CBombas.h" />
     <ClInclude Include="CMapa.h" />
     <ClInclude Include="CObjeto.h" />
-    <ClInclude Include="Cola.h" />
+    <ClInclude Include="CCola.h" />
     <ClInclude Include="CSoldado.h" />
     <ClInclude Include="juego.h" />
     <ClInclude Include="Lista.h" />

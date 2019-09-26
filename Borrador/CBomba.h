@@ -6,6 +6,7 @@
 //#include "CObjeto.h"
 #include "CBala.h"
 #include "CSoldado.h"
+#include "Lista.h"
 using namespace std;
 using namespace System;
 using namespace System::ComponentModel;
@@ -266,7 +267,7 @@ public:
 			}
 		}
 	}
-	void Disparar(vector<Bala*>* VecBala)
+	/*void Disparar(vector<Bala*>* VecBala)
 	{
 		if (modelo == 5)
 		{
@@ -279,6 +280,21 @@ public:
 			VecBala->push_back(new Bala(this->getX() + 128 / 20, this->getY() + 128 / 20, 2, 2));
 			VecBala->push_back(new Bala(this->getX() + 128 / 20, this->getY() + 128 / 20, 3, 2));
 			VecBala->push_back(new Bala(this->getX() + 128 / 20, this->getY() + 128 / 20, 4, 2));
+		}
+	}*/
+	void Disparar(List<Bala*>* LisBala)
+	{
+		if (modelo == 5)
+		{
+			LisBala->addFirst(new Bala(this->getX() + 128 / 20, this->getY() + 128 / 20, 3, 2));
+			LisBala->addFirst(new Bala(this->getX() + 128 / 20, this->getY() + 128 / 20, 4, 2));
+		}
+		if (modelo == 4)
+		{
+			LisBala->addFirst(new Bala(this->getX() + 128 / 20, this->getY() + 128 / 20, 1, 2));
+			LisBala->addFirst(new Bala(this->getX() + 128 / 20, this->getY() + 128 / 20, 2, 2));
+			LisBala->addFirst(new Bala(this->getX() + 128 / 20, this->getY() + 128 / 20, 3, 2));
+			LisBala->addFirst(new Bala(this->getX() + 128 / 20, this->getY() + 128 / 20, 4, 2));
 		}
 	}
 	bool choque(CSoldado* s)

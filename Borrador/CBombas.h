@@ -108,6 +108,40 @@ public:
 		}
 		return n + M;
 	}
+	int agregarAlgunas(Bitmap^ otrasImagnes, int ancho, int alto)
+	{
+		Random  r;
+		int n =2;
+		System::Threading::Thread::Sleep(5);
+		for (int i = 0; i < n; i++)
+		{
+			int t = r.Next(0, 3);
+			System::Threading::Thread::Sleep(15);
+			switch (t)
+			{
+			case 0: bombines->addFirst(new CBomba(otrasImagnes, ancho, alto, 1, 1, 1)); break;
+			case 1: bombines->addFirst(new CBomba(otrasImagnes, ancho, alto, 1, 2, 1)); break;
+			case 2: bombines->addFirst(new CBomba(otrasImagnes, ancho, alto, 1, 3, 1)); break;
+			default:
+				break;
+			}
+		}
+		int M =1;
+		System::Threading::Thread::Sleep(5);
+		for (int i = 0; i < M; i++)
+		{
+			int t = r.Next(0, 2);
+			System::Threading::Thread::Sleep(5);
+			switch (t)
+			{
+			case 0: bombines->addFirst(new CBomba(otrasImagnes, ancho, alto, 2, 4, 1)); break;
+			case 1: bombines->addFirst(new CBomba(otrasImagnes, ancho, alto, 2, 5, 1)); break;
+			default:
+				break;
+			}
+		}
+		return n + M;
+	}
 
 	////constructor obsoleto
 	////int agregarVarias(Bitmap^ bomba, Bitmap^ bomba2, Bitmap^ bomba3, Bitmap^ enemigo_grande1, Bitmap^ enemigo_grande2, int ancho, int alto, int nivel)
@@ -154,13 +188,22 @@ public:
 	//	}
 	//}
 
-	void disparar(vector<Bala*>* VecBala)
+	//void disparar(vector<Bala*>* VecBala)
+	//{
+	//	int n = rand() % (bombines->size())+1;
+	//	//int n =0;
+	//	if (bombines->obtenerPos(n)->getTipo() ==2)
+	//	{
+	//		bombines->obtenerPos(n)->Disparar(VecBala);
+	//	}
+	//}
+	void disparar(List<Bala*>* LisBala)
 	{
-		int n = rand() % (bombines->size())+1;
+		int n = rand() % (bombines->size()) + 1;
 		//int n =0;
-		if (bombines->obtenerPos(n)->getTipo() ==2)
+		if (bombines->obtenerPos(n)->getTipo() == 2)
 		{
-			bombines->obtenerPos(n)->Disparar(VecBala);
+			bombines->obtenerPos(n)->Disparar(LisBala);
 		}
 	}
 
@@ -202,7 +245,7 @@ public:
 	//	}
 	//	return false;
 	//}
-	bool limpiarBomba(CSoldado* player)
+	bool limpiarBomba(int score)
 	{
 		for (int i = 1; i < bombines->size(); i++)
 		{
@@ -311,7 +354,10 @@ public:
 	}*/
 	bool colisionBala(Bala* baaa)
 	{
-		for (int i = 1; i < bombines->size(); i++)
+		if (bombines->size()>0)
+		{
+
+		for (int i = 1; i < bombines->size()-1; i++)
 		{
 			if (bombines->obtenerPos(i)->choque(baaa) && baaa->getTipo() == 1)
 			{
@@ -320,5 +366,6 @@ public:
 			}
 		}
 		return false;
+		}
 	}
 };

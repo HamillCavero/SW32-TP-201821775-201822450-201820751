@@ -1,10 +1,11 @@
 #pragma once
-//#include <vector>
+#include <vector>
 #include <time.h>
 #include <cstdlib>
 #include <math.h>
 //#include "CObjeto.h"
 #include "CBala.h"
+#include "Lista.h"
 using namespace std;
 using namespace System;
 using namespace System::ComponentModel;
@@ -47,30 +48,30 @@ public:
 		nivelactual = 1;
 	}
 
-	void crecer(int i)
-	{
-		if (ancho_actual <= 10 * ancho || alto_actual <= 10 * alto)
-		{
-			switch (i)
-			{
-			case 1:
-				this->ancho_actual *= 1.05;
-				this->alto_actual *= 1.05;
-				break;
-			case 2:
-				this->ancho_actual *= 1.08;
-				this->alto_actual *= 1.08;
-				break;
-			default:
-				break;
-			}
-		}
-	}
-	void decrecer()
-	{
-		this->ancho_actual = ancho * 0.2;
-		this->alto_actual = ancho * 0.2;
-	}
+	//void crecer(int i)
+	//{
+	//	if (ancho_actual <= 10 * ancho || alto_actual <= 10 * alto)
+	//	{
+	//		switch (i)
+	//		{
+	//		case 1:
+	//			this->ancho_actual *= 1.05;
+	//			this->alto_actual *= 1.05;
+	//			break;
+	//		case 2:
+	//			this->ancho_actual *= 1.08;
+	//			this->alto_actual *= 1.08;
+	//			break;
+	//		default:
+	//			break;
+	//		}
+	//	}
+	//}
+	//void decrecer()
+	//{
+	//	this->ancho_actual = ancho * 0.2;
+	//	this->alto_actual = ancho * 0.2;
+	//}
 
 	void selecimg(int angulo)
 	{
@@ -299,73 +300,147 @@ public:
 		}
 
 	}
-	void Disparar(vector<Bala*>* VecBala, int dirX, int dirY, int nivel, int AnchoP, int AltoP)
+	//void Disparar(vector<Bala*>* VecBala, int dirX, int dirY, int nivel, int AnchoP, int AltoP)
+	//{
+	//	nivelactual = nivel;
+	//	switch (nivelactual)
+	//	{
+	//	case 1:
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
+	//		break;
+	//	case 2:
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
+	//		if (dirX >= getX())
+	//		{
+	//			if (dirY >= getY())
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//			else
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//		}
+	//		else
+	//		{
+	//			if (dirY >= getY())
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//			else
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//		}
+	//		break;
+	//	case 3:
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto6X, punto6Y, dirX, dirY, 1));
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto5X, punto5Y, dirX, dirY, 1));
+	//		break;
+	//	case 4:
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto6X, punto6Y, dirX, dirY, 1));
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto5X, punto5Y, dirX, dirY, 1));
+	//		break;
+	//	case 5:
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto6X, punto6Y, dirX, dirY, 1));
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto5X, punto5Y, dirX, dirY, 1));
+
+	//		if (dirX >= getX())
+	//		{
+	//			if (dirY >= getY())
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//			else
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//		}
+	//		else
+	//		{
+	//			if (dirY >= getY())
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//			else
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//		}
+	//		break;
+	//	default:
+	//		break;
+	//	}
+	//}
+	void Disparar(List<Bala*>* LisBala, int dirX, int dirY, int nivel, int AnchoP, int AltoP)
 	{
 		nivelactual = nivel;
 		switch (nivelactual)
 		{
 		case 1:
-			VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
+			LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
 			break;
 		case 2:
-			VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
+			LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
 			if (dirX >= getX())
 			{
 				if (dirY >= getY())
 				{
-					VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
+					LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
 				}
 				else
 				{
-					VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
+					LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
 				}
 			}
 			else
 			{
 				if (dirY >= getY())
 				{
-					VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
+					LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
 				}
 				else
 				{
-					VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
+					LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
 				}
 			}
 			break;
 		case 3:
-			VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto6X, punto6Y, dirX, dirY, 1));
-			VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto5X, punto5Y, dirX, dirY, 1));
+			LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto6X, punto6Y, dirX, dirY, 1));
+			LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto5X, punto5Y, dirX, dirY, 1));
 			break;
 		case 4:
-			VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
-			VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto6X, punto6Y, dirX, dirY, 1));
-			VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto5X, punto5Y, dirX, dirY, 1));
+			LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
+			LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto6X, punto6Y, dirX, dirY, 1));
+			LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto5X, punto5Y, dirX, dirY, 1));
 			break;
 		case 5:
-			VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
-			VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto6X, punto6Y, dirX, dirY, 1));
-			VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto5X, punto5Y, dirX, dirY, 1));
+			LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
+			LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto6X, punto6Y, dirX, dirY, 1));
+			LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto5X, punto5Y, dirX, dirY, 1));
 
 			if (dirX >= getX())
 			{
 				if (dirY >= getY())
 				{
-					VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
+					LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
 				}
 				else
 				{
-					VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
+					LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
 				}
 			}
 			else
 			{
 				if (dirY >= getY())
 				{
-					VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
+					LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
 				}
 				else
 				{
-					VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
+					LisBala->addFirst(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
 				}
 			}
 			break;
@@ -373,6 +448,81 @@ public:
 			break;
 		}
 	}
+	//void Disparar(vector<Bala*>* VecBala, int dirX, int dirY, int nivel, int AnchoP, int AltoP)
+	//{
+	//	nivelactual = nivel;
+	//	switch (nivelactual)
+	//	{
+	//	case 1:
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
+	//		break;
+	//	case 2:
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
+	//		if (dirX >= getX())
+	//		{
+	//			if (dirY >= getY())
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//			else
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//		}
+	//		else
+	//		{
+	//			if (dirY >= getY())
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//			else
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//		}
+	//		break;
+	//	case 3:
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto6X, punto6Y, dirX, dirY, 1));
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto5X, punto5Y, dirX, dirY, 1));
+	//		break;
+	//	case 4:
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto6X, punto6Y, dirX, dirY, 1));
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto5X, punto5Y, dirX, dirY, 1));
+	//		break;
+	//	case 5:
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto1X, punto1Y, dirX, dirY, 1));
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto6X, punto6Y, dirX, dirY, 1));
+	//		VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto5X, punto5Y, dirX, dirY, 1));
+
+	//		if (dirX >= getX())
+	//		{
+	//			if (dirY >= getY())
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//			else
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() - abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//		}
+	//		else
+	//		{
+	//			if (dirY >= getY())
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() - abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//			else
+	//			{
+	//				VecBala->push_back(new Bala(getX() + getAncho() / 2, getY() + getAlto() / 2, punto2X, punto2Y, getX() + abs(dirX - (getX() + getAncho() / 2)), getY() + abs(dirY - (getY() + getAlto() / 2)), 1));
+	//			}
+	//		}
+	//		break;
+	//	default:
+	//		break;
+	//	}
+	//}
+
 	void Dibujar(BufferedGraphics^ buffer, Bitmap^ img, float angulo) {
 		selecimg(angulo);
 		buffer->Graphics->DrawImage(img, Rectangle(x, y, ancho_actual, alto_actual), Rectangle(ix*ancho, iy*alto, ancho, alto), GraphicsUnit::Pixel);

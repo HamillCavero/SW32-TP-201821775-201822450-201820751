@@ -35,6 +35,7 @@ namespace TrabajoFinal1 {
 			 Bitmap^ otrasImagenes;
 			 float angle;
 	private: System::Windows::Forms::Button^  btn_pos;
+	private: System::Windows::Forms::Label^  lbl_score;
 			 Bitmap^fondo;
 			
 	public:
@@ -61,6 +62,7 @@ namespace TrabajoFinal1 {
 			if (components)
 			{
 				Control->escribir();
+				Control->escribir_Score();
 				delete components;
 			}
 		}
@@ -80,6 +82,7 @@ namespace TrabajoFinal1 {
 			this->lbl_enemigosNivel = (gcnew System::Windows::Forms::Label());
 			this->btn_menu = (gcnew System::Windows::Forms::Button());
 			this->btn_pos = (gcnew System::Windows::Forms::Button());
+			this->lbl_score = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// timer1
@@ -88,7 +91,7 @@ namespace TrabajoFinal1 {
 			// 
 			// timer2
 			// 
-			this->timer2->Interval = 300;
+			this->timer2->Interval = 3000;
 			this->timer2->Tick += gcnew System::EventHandler(this, &MyForm::Bombas);
 			// 
 			// button3
@@ -166,7 +169,6 @@ namespace TrabajoFinal1 {
 			this->btn_menu->Text = L"Volver a jugar\?";
 			this->btn_menu->UseVisualStyleBackColor = true;
 			this->btn_menu->Visible = false;
-			this->btn_menu->Click += gcnew System::EventHandler(this, &MyForm::btn_menu_Click);
 			// 
 			// btn_pos
 			// 
@@ -178,11 +180,23 @@ namespace TrabajoFinal1 {
 			this->btn_pos->UseVisualStyleBackColor = true;
 			this->btn_pos->Click += gcnew System::EventHandler(this, &MyForm::btn_pos_Click);
 			// 
+			// lbl_score
+			// 
+			this->lbl_score->AutoSize = true;
+			this->lbl_score->Enabled = false;
+			this->lbl_score->Location = System::Drawing::Point(118, 12);
+			this->lbl_score->Name = L"lbl_score";
+			this->lbl_score->Size = System::Drawing::Size(50, 13);
+			this->lbl_score->TabIndex = 15;
+			this->lbl_score->Text = L"SCORE: ";
+			this->lbl_score->Visible = false;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1105, 595);
+			this->Controls->Add(this->lbl_score);
 			this->Controls->Add(this->btn_pos);
 			this->Controls->Add(this->btn_menu);
 			this->Controls->Add(this->lbl_enemigosNivel);
@@ -206,7 +220,7 @@ namespace TrabajoFinal1 {
 	private: System::Void Animar(System::Object^  sender, System::EventArgs^  e) 
 	{
 
-		if (Control->getLvl() != 6 && Control->getSoldado()->getVida() > 0)
+		if (Control->getSoldado()->getVida() > 0)
 		//if (Control->getLvl() != 6 && Control->getSoldado()->getVida() > 0 && tiempo_segundos > 0)
 		{
 			Control->Dibujar(buffer, nuevoJ1, terreno, this->ClientRectangle, otrasImagenes, angle);
@@ -217,23 +231,24 @@ namespace TrabajoFinal1 {
 			Control->Eliminar(this->Width, this->Height);
 
 			lbl_vidas->Text = "Vidas: " + Control->getSoldado()->getVida();
+			lbl_score->Text = "Score: " + Control->getScore();
 			//lbl_tiempo->Text = "Tiempo: " + tiempo_segundos / 30 ;
 			lbl_enemigosRestantes->Text = "Enemigos restantes: " + Control->getEnemigosRestantes();
 			lbl_enemigosNivel->Text = "Enemigos a matar: " + Control->getEnemigosTotales();
 			//if (Control->getEnemigosRestantes() <= Control->getEnemigosTotales() / 2) {
-			if (Control->getEnemigosRestantes() <=0) {
-				Control->subirNivel(this->Width, this->Height);
-				if (Control->getLvl() < 6)
-				{
-					Control->destruirBalas();
-					timer1->Interval -= 10;
-					timer2->Interval -= 20;
-					Control->AgregarVArias(otrasImagenes, this->Width, this->Height);
-					Control->setEnemigosRestantes();
-					terreno = gcnew Bitmap("fondo" + Control->getLvl() + ".jpg");
-					nuevoJ1 = gcnew Bitmap("jugadorN" + Control->getLvl() + ".png");
-				}
-			}
+			//if (Control->getEnemigosRestantes() <=0) {
+			//	//Control->subirNivel(this->Width, this->Height);
+			//	if (Control->getLvl() < 6)
+			//	{
+			//		Control->destruirBalas();
+			//		timer1->Interval -= 10;
+			//		timer2->Interval -= 20;
+			//		Control->AgregarVArias(otrasImagenes, this->Width, this->Height);
+			//		Control->setEnemigosRestantes();
+			//		terreno = gcnew Bitmap("fondo" + Control->getLvl() + ".jpg");
+			//		nuevoJ1 = gcnew Bitmap("jugadorN" + Control->getLvl() + ".png");
+			//	}
+			//}
 			buffer->Render();
 			//tiempo_segundos--;
 		}
@@ -251,19 +266,20 @@ namespace TrabajoFinal1 {
 				this->Text = L"PERDISTE OHNO!";
 				MessageBox::Show("PERDISTE MUAJAJAJAJA");
 			}
-			btn_menu->Enabled = true;
-			btn_menu->Visible = true;
+			/*btn_menu->Enabled = true;
+			btn_menu->Visible = true;*/
 		}
 	}
 	private: System::Void Bombas(System::Object^  sender, System::EventArgs^  e) {
 		Control->EnemigoDisparo();
+		Control->AgregarALgunas(otrasImagenes, this->Width, this->Height);
 	}
 	private: System::Void Apretar(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
 		e->Handled = true;
 		e->SuppressKeyPress = true;
 		switch (e->KeyCode)
 		{
-
+		case Keys::K: Control->getSoldado()->setVida(300); break;   //arriba
 		case Keys::W: direccion = 1; break;   //arriba
 		case Keys::S: direccion = 2; break;	  //abajo
 		case Keys::D: direccion = 3; break;	  //derecha
@@ -320,6 +336,10 @@ namespace TrabajoFinal1 {
 				txt_vidas->Enabled = false;*/
 				/*txt_tiempo->Visible = false;
 				txt_tiempo->Enabled = false;*/
+
+				lbl_score->Visible = true;
+				lbl_score->Enabled = true;
+
 
 				lbl_enemigosNivel->Visible = true;
 				lbl_enemigosNivel->Enabled = true;
@@ -389,22 +409,22 @@ namespace TrabajoFinal1 {
 	{
 		if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 0x08) e->Handled = true;
 	}
-	private: System::Void btn_menu_Click(System::Object^  sender, System::EventArgs^  e) {
-		vidas = 100;
-		/*vidas = int::Parse(txt_vidas->Text);
-		tiempo_minutos = int::Parse(txt_tiempo->Text);*/
-		Control->getSoldado()->iniciarVida(vidas);
-		Control->reiniciar(otrasImagenes, this->Width, this->Height);
+	//private: System::Void btn_menu_Click(System::Object^  sender, System::EventArgs^  e) {
+	//	vidas = 100;
+	//	/*vidas = int::Parse(txt_vidas->Text);
+	//	tiempo_minutos = int::Parse(txt_tiempo->Text);*/
+	//	Control->getSoldado()->iniciarVida(vidas);
+	//	Control->reiniciar(otrasImagenes, this->Width, this->Height);
 
-		terreno = gcnew Bitmap("fondo" + Control->getLvl() + ".jpg");
-		nuevoJ1 = gcnew Bitmap("jugadorN" + Control->getLvl() + ".png");
-		timer1->Interval = 100;
-		timer2->Interval = 300;
-		timer2->Start();
-		timer1->Start();
-		btn_menu->Enabled = false;
-		btn_menu->Visible = false;
-	}
+	//	terreno = gcnew Bitmap("fondo" + Control->getLvl() + ".jpg");
+	//	nuevoJ1 = gcnew Bitmap("jugadorN" + Control->getLvl() + ".png");
+	//	timer1->Interval = 100;
+	//	timer2->Interval = 300;
+	//	timer2->Start();
+	//	timer1->Start();
+	//	btn_menu->Enabled = false;
+	//	btn_menu->Visible = false;
+	//}
 	private: System::Void MyForm_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e)
 	{
 		Control->agregarbala(e->X, e->Y, this->Width, this->Height);

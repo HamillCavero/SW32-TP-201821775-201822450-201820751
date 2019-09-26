@@ -47,7 +47,7 @@
     <ClInclude Include="Lista.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Cola.h">
+    <ClInclude Include="CCola.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
