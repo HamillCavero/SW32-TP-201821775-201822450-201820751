@@ -156,7 +156,7 @@ public:
 
 	void disparar(vector<Bala*>* VecBala)
 	{
-		int n = rand() % (bombines->size()-1)+1;
+		int n = rand() % (bombines->size())+1;
 		//int n =0;
 		if (bombines->obtenerPos(n)->getTipo() ==2)
 		{
@@ -177,7 +177,7 @@ public:
 	//}
 	bool borrarBomba(CSoldado* sold)
 	{
-		for (int i = 0; i < bombines->size()-2; i++)
+		for (int i =1; i < bombines->size(); i++)
 		{
 			if (bombines->obtenerPos(i)->choque(sold))
 			{
@@ -204,7 +204,7 @@ public:
 	//}
 	bool limpiarBomba(CSoldado* player)
 	{
-		for (int i = 0; i < bombines->size(); i++)
+		for (int i = 1; i < bombines->size(); i++)
 		{
 			if (bombines->obtenerPos(i)->getVida() <= 0)
 			{
@@ -256,7 +256,7 @@ public:
 	}*/
 	void moverBombas(int jugadorX, int jugadory, int LimiAncho, int LimiAlto)
 	{
-		for (int i = 0; i < bombines->size()-1; i++)
+		for (int i = 1; i < bombines->size(); i++)
 		{
 			bombines->obtenerPos(i)->Mover(jugadorX, jugadory, LimiAncho, LimiAlto);
 		}
@@ -281,7 +281,7 @@ public:
 	}*/
 	void DibujarBombas(BufferedGraphics^ buffer, Bitmap^enemigos)
 	{
-		for (int i = 0; i < bombines->size()-1; i++)
+		for (int i =1; i < bombines->size(); i++)
 		{
 			switch (bombines->obtenerPos(i)->getMascara())
 			{
@@ -311,7 +311,7 @@ public:
 	}*/
 	bool colisionBala(Bala* baaa)
 	{
-		for (int i = 0; i < bombines->size(); i++)
+		for (int i = 1; i < bombines->size(); i++)
 		{
 			if (bombines->obtenerPos(i)->choque(baaa) && baaa->getTipo() == 1)
 			{

@@ -62,7 +62,7 @@ public:
 
 	//devuevle el tamaño de la lista
 	int size() {
-		return len;
+		return len-1;
 	}
 
 	//añade un nodo al inicio
