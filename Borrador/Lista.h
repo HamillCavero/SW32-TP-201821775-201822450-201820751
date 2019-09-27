@@ -1,11 +1,6 @@
 #pragma once
 #ifndef __LIST_H__
 #define __LIST_H__
-//lista simplemente enlazada con puntero al inicio y al final, hecho por Hamill Cavero u201821775
-
-// Lo único que se debería ser sería adaptar esto ( creo )
-// Osea ponerle templates, el elemento del nodo debería ser un T porque ahí irían las balas y los enemigos en un futuro, 
-// espero que alguno de ustedes lea esto y ponga confirmo o una wea así / CONFIRMO
 template <class T2> // T2 FLOAT //T INT
 class List {
 	struct Node {
@@ -17,7 +12,6 @@ class List {
 	};
 
 	Node* head;
-	//Node* tail;
 	int len;
 
 	class Iterator {
@@ -35,15 +29,6 @@ class List {
 	Iterator end() {
 		return Iterator(len, nullptr);
 	}
-	/*Iterator _pos(int pos) {
-		Iterator it(0, head);
-		for (int i = 0; i < pos; i++)
-		{
-			++it;
-		}
-		return it;
-	}*/
-
 public:
 	List() :head(nullptr), len(0) {}
 	~List() {
@@ -108,7 +93,7 @@ public:
 		else if (pos>0 && pos<len-1)
 		{
 			Node* aux1 = head;
-			for (int i = 0; i < pos - 1; i++)
+			for (int i = 0; i < pos-1; i++)
 			{
 				aux1 = aux1->next;
 			}
@@ -118,7 +103,7 @@ public:
 		}
 		else if (pos == len-1)
 		{
-			addLast(elem);
+			addFirst(elem);
 		}
 	}
 
@@ -235,7 +220,7 @@ public:
 		else if (pos>0 && pos<len)
 		{
 			Node* aux1 = head;
-			for (int i = 0; i < pos; i++)
+			for (int i = 0; i < pos-1; i++)
 			{
 				aux1 = aux1->next;
 			}
